@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.2.0";
+    public const string Version = "0.3.0";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
@@ -47,7 +47,7 @@ public class Plugin : BaseUnityPlugin
                 float cans = ml / 250f;
                 body.Drink(15f * cans);
                 body.caffeinated += 1000f * cans;   // same as an energy drink
-                body.radiationSickness += 10f * cans; // wound view shows radiation x0.3, so 3.0 gy
+                body.radiationSickness += 12f * cans; // wound view shows radiation x0.3, so 3.6 gy
                 body.adrenaline += 40f * cans;
                 body.happiness += 6f * cans;
                 body.talker.EatGood();
@@ -84,6 +84,7 @@ public class Plugin : BaseUnityPlugin
 }
 
 // Bonked: injuries are frozen (only improvements stick), no attacking, then a slowdown. See docs\adr\0001.
+// The component is enabled exactly while bonked; DoubleJump checks that by name to allow the air jump.
 public class Bonked : MonoBehaviour
 {
     public float timeLeft;
@@ -92,12 +93,13 @@ public class Bonked : MonoBehaviour
     private int[] shrapnel;
     private float blood, brain, internalBleeding;
 
-    public static bool IsBonked(Body body) => body && body.TryGetComponent<Bonked>(out var b) && b.timeLeft > 0f;
+    public static bool IsBonked(Body body) => body && body.TryGetComponent<Bonked>(out var b) && b.enabled;
 
     public void Begin(float seconds)
     {
         body = GetComponent<Body>();
-        if (timeLeft <= 0f) Snapshot();
+        if (!enabled || skin == null) Snapshot();
+        enabled = true;
         timeLeft = Mathf.Max(timeLeft, seconds); // drinking again resets to full, never adds
     }
 
@@ -116,7 +118,6 @@ public class Bonked : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (timeLeft <= 0f) return;
         var limbs = body.limbs;
         for (int i = 0; i < limbs.Length; i++)
         {
@@ -136,7 +137,9 @@ public class Bonked : MonoBehaviour
             MoodleRegistry.AddMoodle(5, Plugin.MoodleIcon, "Bonked!",
                 $"Nothing can hurt you, but you can't attack. {Mathf.Max(timeLeft, 0f):0.0}s left.",
                 chippedOnly: true, key: "bonkatomicpunch.bonked");
-        if (timeLeft <= 0f) body.temporarySlowdown = Mathf.Max(body.temporarySlowdown, 0.5f); // game fades it out over 5 s
+        if (timeLeft > 0f) return;
+        body.temporarySlowdown = Mathf.Max(body.temporarySlowdown, 0.5f); // game fades it out over 5 s
+        enabled = false;
     }
 }
 
