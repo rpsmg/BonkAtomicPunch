@@ -15,3 +15,31 @@ for y, k in enumerate(ART):
     for x, c in enumerate(PAL[k]):
         im.putpixel((x, y), c + (255,))
 im.save("bonkcan.png")
+
+# bonked.png: 20x20 moodle icon (vanilla moodle size, 33.3 px/unit). Same can, bigger, with a radiation trefoil.
+MPAL = {
+    "t": (200, 200, 208), "u": (150, 150, 158),  # rim, rim shade
+    "R": (220, 56, 46), "r": (150, 28, 24),      # red band, shade
+    "Y": (250, 214, 40), "y": (190, 150, 16),    # yellow body, shade
+    "K": (178, 30, 30),                          # trefoil
+}
+MART = [
+    "ttttttttuu",
+    "RRRRRRRRrr",
+    "RRRRRRRRrr",
+    "YYYYYYYYyy",
+    "YKKYYKKYyy",
+    "YKKYYKKYyy",
+    "YYYKKYYYyy",
+    "YYYKKYYYyy",
+    "YYKKKKYYyy",
+    "YYYYYYYYyy",
+    "RRRRRRRRrr",
+    "RRRRRRRRrr",
+    "ttttttttuu",
+]
+icon = Image.new("RGBA", (20, 20))
+for y, row in enumerate(MART):
+    for x, k in enumerate(row):
+        icon.putpixel((5 + x, 3 + y), MPAL[k] + (255,))
+icon.save("bonked.png")

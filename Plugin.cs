@@ -14,17 +14,18 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.1.0";
+    public const string Version = "0.2.0";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
     internal static ManualLogSource Log;
-    internal static Sprite CanSprite;
+    internal static Sprite CanSprite, MoodleIcon;
 
     private void Awake()
     {
         Log = Logger;
         CanSprite = AssetLoader.LoadEmbeddedSprite("BonkAtomicPunch.bonkcan.png");
+        MoodleIcon = AssetLoader.LoadEmbeddedSprite("BonkAtomicPunch.bonked.png", 33.33f); // vanilla moodle scale
         RegisterLiquid();
         RegisterCan();
         new Harmony(Guid).PatchAll();
@@ -46,7 +47,7 @@ public class Plugin : BaseUnityPlugin
                 float cans = ml / 250f;
                 body.Drink(15f * cans);
                 body.caffeinated += 1000f * cans;   // same as an energy drink
-                body.radiationSickness += 4f * cans;
+                body.radiationSickness += 10f * cans; // wound view shows radiation x0.3, so 3.0 gy
                 body.adrenaline += 40f * cans;
                 body.happiness += 6f * cans;
                 body.talker.EatGood();
@@ -132,8 +133,9 @@ public class Bonked : MonoBehaviour
 
         timeLeft -= Time.deltaTime;
         if (PlayerCamera.main && PlayerCamera.main.body == body)
-            MoodleRegistry.AddMoodle(5, Plugin.CanSprite, "Bonked!",
-                $"Nothing can hurt you, but you can't attack. {Mathf.Max(timeLeft, 0f):0.0}s left.", key: "bonkatomicpunch.bonked");
+            MoodleRegistry.AddMoodle(5, Plugin.MoodleIcon, "Bonked!",
+                $"Nothing can hurt you, but you can't attack. {Mathf.Max(timeLeft, 0f):0.0}s left.",
+                chippedOnly: true, key: "bonkatomicpunch.bonked");
         if (timeLeft <= 0f) body.temporarySlowdown = Mathf.Max(body.temporarySlowdown, 0.5f); // game fades it out over 5 s
     }
 }
