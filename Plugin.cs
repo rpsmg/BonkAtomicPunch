@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.4.5";
+    public const string Version = "0.4.6";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
@@ -40,7 +40,7 @@ public class Plugin : BaseUnityPlugin
             name = "Bonk!",
             description = "Cherry-flavoured and faintly glowing. Makes you untouchable and lets you jump once more in mid-air for a few seconds. Leaves you a little thirstier.",
             color = new Color32(200, 24, 48, 255), // cherry
-            valuePerLiter = 12f,
+            valuePerLiter = 48f, // 12 per 250 ml can
             injectionSickness = 0.6f,
             qualities = new List<CraftingQuality> { new CraftingQuality("water", 0.5f) },
             onDrink = (ml, body) =>
@@ -76,7 +76,7 @@ public class Plugin : BaseUnityPlugin
             capacity = 250f,
             defaultContents = new List<LiquidStack> { new LiquidStack(LiquidId, 250f) },
             useAction = (body, item) => item.GetComponent<WaterContainerItem>().Drink(body, 250f), // chug the whole can
-            value = 12, // shows as 15 at traders with the liquid's 3
+            value = 3, // + 12 from a full can of liquid = trade value 15
             rec = new Recognition(3),
             DropPool = CUCoreLib.Data.DropPool.FoodCrate | CUCoreLib.Data.DropPool.AllTraders,
             SpawnFrequency = 1, // ponytail: lowest pool weight = rare; raise if it never shows up
