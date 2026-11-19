@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.4.4";
+    public const string Version = "0.4.5";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
@@ -76,7 +76,7 @@ public class Plugin : BaseUnityPlugin
             capacity = 250f,
             defaultContents = new List<LiquidStack> { new LiquidStack(LiquidId, 250f) },
             useAction = (body, item) => item.GetComponent<WaterContainerItem>().Drink(body, 250f), // chug the whole can
-            value = 3,
+            value = 12, // shows as 15 at traders with the liquid's 3
             rec = new Recognition(3),
             DropPool = CUCoreLib.Data.DropPool.FoodCrate | CUCoreLib.Data.DropPool.AllTraders,
             SpawnFrequency = 1, // ponytail: lowest pool weight = rare; raise if it never shows up
