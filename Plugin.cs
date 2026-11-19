@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.4.1";
+    public const string Version = "0.4.2";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
@@ -38,6 +38,7 @@ public class Plugin : BaseUnityPlugin
         LiquidRegistry.Register(LiquidId, new CustomLiquidInfo
         {
             name = "Bonk!",
+            description = "Cherry-flavoured and faintly glowing. Makes you untouchable for a few seconds.",
             color = new Color32(200, 24, 48, 255), // cherry
             valuePerLiter = 12f,
             injectionSickness = 0.6f,
