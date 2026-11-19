@@ -7,7 +7,7 @@ Per can (everything scales with the amount drunk, so Bonk! poured into another c
 - **Bonked!** for 8 s (moodle, chipped only): injuries are frozen (no wounds, bleeding, pain, broken/dislocated/lost limbs, blood loss or death; healing still works), you can't attack or throw, and you can jump once more in mid-air (no other mods needed; with DoubleJump's Scout shoes on, it's still one extra jump, not two). Drinking again while bonked resets the timer.
 - When bonked ends: 50% slowdown, fading over 5 s.
 
-Sprites: `bonkcan.png` (4x9, vanilla soda can size) and the `bonked.png` moodle icon (20x20), both painted from `bonkcan.art` / `bonked.art` with the cu-mod skill's `paint.py`. Why injuries are frozen rather than attacks blocked: `docs\adr\0001-bonked-freezes-injuries.md` in the project root.
+Sprites: `bonkcan.png` (4x9, vanilla soda can size) and the `bonked.png` moodle icon (20x20), both painted from `bonkcan.art` / `bonked.art`. Why injuries are frozen rather than attacks blocked: [docs/0001-bonked-freezes-injuries.md](docs/0001-bonked-freezes-injuries.md).
 
 - **Plugin ID:** `boofi.cu.bonkatomicpunch`
 - **Requires:** BepInEx 5.4.23.5, CUCoreLib (ships with Casualties Together)
@@ -15,3 +15,10 @@ Sprites: `bonkcan.png` (4x9, vanilla soda can size) and the `bonked.png` moodle 
 
 ## Install
 Copy `BonkAtomicPunch.dll` to `BepInEx\plugins\BonkAtomicPunch\`.
+
+## Build
+Requires .NET SDK and the game's managed DLLs, referenced straight from the install (no copies).
+```
+dotnet build -p:GameDir="C:\Program Files (x86)\Steam\steamapps\common\Casualties Unknown\"
+```
+The build copies the DLL to `BepInEx\plugins\BonkAtomicPunch\`; pass `-p:Deploy=false` to compile only.

@@ -1,0 +1,33 @@
+<Project>
+  <!-- Reference the game install directly (nothing copied); override with -p:GameDir=... CUCoreLib comes from Casualties Together. -->
+  <PropertyGroup>
+    <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Casualties Unknown\</GameDir>
+    <ManagedDir>$(GameDir)CasualtiesUnknown_Data\Managed\</ManagedDir>
+    <BepInExDir>$(GameDir)BepInEx\</BepInExDir>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(ManagedDir)Assembly-CSharp.dll" Private="false" />
+    <Reference Include="$(ManagedDir)UnityEngine.dll" Private="false" />
+    <Reference Include="$(ManagedDir)UnityEngine.*.dll" Private="false" />
+    <Reference Include="$(ManagedDir)Unity.TextMeshPro.dll" Private="false" />
+    <Reference Include="$(ManagedDir)Newtonsoft.Json.dll" Private="false" />
+    <Reference Include="$(BepInExDir)core\BepInEx.dll" Private="false" />
+    <Reference Include="$(BepInExDir)core\0Harmony.dll" Private="false" />
+    <Reference Include="$(BepInExDir)plugins\CUCoreLib.dll" Private="false" />
+  </ItemGroup>
+
+  <!-- Deploy: copy the built DLL to plugins\<AssemblyName>\. Refuses while the game is running. Skip with -p:Deploy=false. -->
+  <Target Name="DeployToGame" AfterTargets="Build" Condition="'$(Deploy)' != 'false'">
+    <Exec Command="powershell -NoProfile -Command &quot;if (Get-Process CasualtiesUnknown -ErrorAction SilentlyContinue) { Write-Host 'error: Casualties Unknown is running. Close it before deploying.'; exit 1 }&quot;" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BepInExDir)plugins\$(AssemblyName)\" />
+    <Message Importance="high" Text="Deployed $(AssemblyName).dll to $(BepInExDir)plugins\$(AssemblyName)\" />
+  </Target>
+</Project>
