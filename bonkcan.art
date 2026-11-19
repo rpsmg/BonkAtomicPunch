@@ -1,0 +1,29 @@
+# Bonk! can (4x9, vanilla soda can size and column shading; rims copied from the vanilla can).
+# Paint (from the project root): python .claude/skills/cu-mod/sprites/paint.py mods/BonkAtomicPunch/bonkcan.art
+# Paint (from the project root): python .claudeskills-modspritespaint.py modsBonkAtomicPunchbonkcan.art
+a = #a1a1ab  # top rim (one shade per column)
+b = #a0a9ac
+c = #aaa89e
+d = #a89da2
+e = #7a1616  # red band / lettering (4 column shades e-h)
+f = #e6463a
+g = #c42a24  # red, also the radiation dot in row 6
+h = #6e1414
+i = #b89610  # yellow body (4 column shades i-l)
+j = #ffec60
+k = #f2cc1c
+l = #a6860c
+m = #a49b98  # bottom rim (4 column shades m-p)
+n = #9da59f
+o = #989aa0
+p = #a79d9e
+
+abcd
+efgh
+ijkl
+efgh
+ijkl
+ijgl
+ijkl
+efgh
+mnop
