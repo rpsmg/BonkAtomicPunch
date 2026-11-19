@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.4.2";
+    public const string Version = "0.4.3";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
@@ -46,7 +46,7 @@ public class Plugin : BaseUnityPlugin
             onDrink = (ml, body) =>
             {
                 float cans = ml / 250f;
-                body.Drink(15f * cans);
+                body.Drink(-5f * cans); // a little thirstier (thirst = hydration); Drink keeps the gulp + Together sync
                 body.caffeinated += 1000f * cans;   // same as an energy drink
                 body.radiationSickness += 12f * cans; // wound view shows radiation x0.3, so 3.6 gy
                 body.adrenaline += 40f * cans;
