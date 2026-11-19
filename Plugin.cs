@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.4.0";
+    public const string Version = "0.4.1";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
@@ -59,8 +59,11 @@ public class Plugin : BaseUnityPlugin
 
     private static void RegisterCan()
     {
+        // Name and description must be on the info at Register time; CUCoreLib turns them into locale entries.
         ItemRegistry.Register(CanId, new CustomItemInfo
         {
+            fullName = "Bonk! Atomic Punch",
+            description = "Ingredients: Water, Radiation, Sugar",
             category = "water",
             slotRotation = -45f,
             usable = true,
@@ -77,9 +80,6 @@ public class Plugin : BaseUnityPlugin
             DropPool = CUCoreLib.Data.DropPool.FoodCrate | CUCoreLib.Data.DropPool.AllTraders,
             SpawnFrequency = 1, // ponytail: lowest pool weight = rare; raise if it never shows up
         }, CanSprite);
-
-        LocaleRegistry.Register(LocaleRegistry.LocaleCategory.Item, CanId, "Bonk! Atomic Punch");
-        LocaleRegistry.Register(LocaleRegistry.LocaleCategory.Item, CanId + "dsc", "Ingredients: Water, Radiation, Sugar");
     }
 }
 
