@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.3.0";
+    public const string Version = "0.4.0";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
@@ -84,7 +84,7 @@ public class Plugin : BaseUnityPlugin
 }
 
 // Bonked: injuries are frozen (only improvements stick), no attacking, then a slowdown. See docs\adr\0001.
-// The component is enabled exactly while bonked; DoubleJump checks that by name to allow the air jump.
+// The component is enabled exactly while bonked.
 public class Bonked : MonoBehaviour
 {
     public float timeLeft;
@@ -135,7 +135,7 @@ public class Bonked : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (PlayerCamera.main && PlayerCamera.main.body == body)
             MoodleRegistry.AddMoodle(5, Plugin.MoodleIcon, "Bonked!",
-                $"Nothing can hurt you, but you can't attack. {Mathf.Max(timeLeft, 0f):0.0}s left.",
+                $"Nothing can hurt you and you can jump once more in mid-air, but you can't attack. {Mathf.Max(timeLeft, 0f):0.0}s left.",
                 chippedOnly: true, key: "bonkatomicpunch.bonked");
         if (timeLeft > 0f) return;
         body.temporarySlowdown = Mathf.Max(body.temporarySlowdown, 0.5f); // game fades it out over 5 s
@@ -166,5 +166,45 @@ internal static class BonkedPatches
     private static void NoThrow(Body __instance, ref float force)
     {
         if (Bonked.IsBonked(__instance)) force = 0f;
+    }
+}
+
+// One extra jump in mid-air while bonked. Same jump as the DoubleJump mod's Scout shoes; when the player wears
+// those, DoubleJump does the air jump instead, so having both mods never gives two extra jumps.
+[HarmonyPatch(typeof(Body))]
+internal static class BonkedAirJump
+{
+    // ponytail: one flag, only the local player's body ever air-jumps.
+    private static bool airJumpUsed;
+
+    private static readonly AccessTools.FieldRef<Body, float> JumpCooldown = AccessTools.FieldRefAccess<Body, float>("jumpCooldown");
+    private static readonly AccessTools.FieldRef<Body, bool> MovingAllowed = AccessTools.FieldRefAccess<Body, bool>("movingAllowed");
+
+    [HarmonyPostfix, HarmonyPatch("HandlePhysics")]
+    private static void Recharge(Body __instance)
+    {
+        if (__instance.grounded || __instance.currentClimbable) airJumpUsed = false;
+    }
+
+    // Runs before Together's Jump postfix so it sees the jump and relays it to other players.
+    [HarmonyPostfix, HarmonyPatch(nameof(Body.Jump)), HarmonyPriority(Priority.High)]
+    private static void AirJump(Body __instance)
+    {
+        var cam = PlayerCamera.main;
+        if (!cam || cam.body != __instance || !Bonked.IsBonked(__instance)) return;
+        if (__instance.GetWearableBySlotID("feet")?.id == "scoutshoes") return;
+        // Vanilla ground/wall jump succeeded (it clears the input), or nothing pressed this frame.
+        if (!cam.wantsJumpInput || !Input.GetKeyDown(KeyBinds.GetBind("jump"))) return;
+        if (airJumpUsed || !__instance.standing || __instance.forceWalk || !MovingAllowed(__instance)
+            || JumpCooldown(__instance) > 0f || __instance.currentClimbable) return;
+
+        airJumpUsed = true;
+        JumpCooldown(__instance) = 0.25f;
+        var rb = __instance.rb;
+        rb.velocity = new Vector2(rb.velocity.x, __instance.actualJumpSpeed);
+        __instance.stamina -= 1f + __instance.overEncumberance;
+        __instance.TryExertSound(0.6f, 0.45f);
+        __instance.CreateCloudBig(__instance.transform.position);
+        cam.wantsJumpInput = false;
     }
 }
