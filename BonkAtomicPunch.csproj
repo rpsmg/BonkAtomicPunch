@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Framework, references and deploy step come from mods\Directory.Build.props. -->
+  <PropertyGroup>
+    <AssemblyName>BonkAtomicPunch</AssemblyName>
+    <RootNamespace>BonkAtomicPunch</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="bonkcan.png" />
+  </ItemGroup>
+</Project>
