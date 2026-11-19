@@ -38,7 +38,7 @@ public class Plugin : BaseUnityPlugin
         LiquidRegistry.Register(LiquidId, new CustomLiquidInfo
         {
             name = "Bonk!",
-            description = "Cherry-flavoured and faintly glowing. Makes you untouchable for a few seconds.",
+            description = "Cherry-flavoured and faintly glowing. Makes you untouchable and lets you jump once more in mid-air for a few seconds.",
             color = new Color32(200, 24, 48, 255), // cherry
             valuePerLiter = 12f,
             injectionSickness = 0.6f,
