@@ -170,8 +170,8 @@ internal static class BonkedPatches
     }
 }
 
-// One extra jump in mid-air while bonked. Same jump as the DoubleJump mod's Scout shoes; when the player wears
-// those, DoubleJump does the air jump instead, so having both mods never gives two extra jumps.
+// One extra jump in mid-air while bonked. Skipped when the feet item already grants an air jump, so two sources
+// of air movement never stack into two extra jumps.
 [HarmonyPatch(typeof(Body))]
 internal static class BonkedAirJump
 {
