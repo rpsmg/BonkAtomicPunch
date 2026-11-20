@@ -13,7 +13,7 @@ namespace BonkAtomicPunch;
 [BepInDependency("net.cucorelib", BepInDependency.DependencyFlags.HardDependency)]
 public class Plugin : BaseUnityPlugin
 {
-    public const string Guid = "boofi.cu.bonkatomicpunch";
+    public const string Guid = "sootiee.cu.bonkatomicpunch";
     public const string Version = "1.0.0";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";

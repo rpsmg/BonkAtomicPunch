@@ -27,7 +27,7 @@ Adds **Bonk! Atomic Punch** (`bonkcan`), a cherry-red soda that makes you briefl
 - The BepInEx and HarmonyX maintainers.
 
 ## Notes
-- **Plugin ID:** `boofi.cu.bonkatomicpunch`
+- **Plugin ID:** `sootiee.cu.bonkatomicpunch`
 - Sprites: `bonkcan.png` (4x9, vanilla soda can size) and `bonked.png` (20x20 moodle icon), painted from the `.art` files. Why injuries are frozen rather than attacks blocked: [docs/0001-bonked-freezes-injuries.md](docs/0001-bonked-freezes-injuries.md).
 
 ## Building from source
