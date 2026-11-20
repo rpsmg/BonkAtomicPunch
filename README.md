@@ -24,6 +24,6 @@ Found in food crates and at all fine traders of questionable morals. Supplies ar
 
 ---
 
-*Now in a convenient 250 ml can. Poured into another container? Still works. Science!*
+*Now with ISOTOPES!*
 
 <sub>Requires BepInEx 5.4.23.5 and Casualties Together (CUCoreLib). Install: `BonkAtomicPunch.dll` → `BepInEx\plugins\BonkAtomicPunch\`. Multiplayer: host and every client need the mod. Batteries not included. Do not drink real Bonk! Atomic Punch. Do not drink real radiation.</sub>
