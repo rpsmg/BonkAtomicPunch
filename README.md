@@ -11,7 +11,7 @@ Adds **Bonk! Atomic Punch** (`bonkcan`), a cherry-red soda that makes you briefl
 
 ## Main features
 - **Bonk! Atomic Punch** — a 250 ml can, one use chugs the whole can. Rare in food crates and at all traders.
-- **Bonk!** — the liquid: energized +16:40, hydration +5, radiation +12 (3.6 gy), adrenaline +40, happiness +6 per can. Everything scales with the amount drunk, so Bonk! poured into another container still works.
+- **Bonk!** — the liquid: energized +8:00, hydration +5, radiation +12 (3.6 gy), adrenaline +40, happiness +6 per can. Everything scales with the amount drunk, so Bonk! poured into another container still works.
 - **Bonked!** for 8 s (chipped-only moodle): injuries are frozen — no wounds, bleeding, pain, broken or dislocated limbs, blood loss or death, while healing still works. You can't attack or throw, but you get one extra mid-air jump.
 - Drinking another can while bonked resets the timer. When it ends, a 50% slowdown fades over 5 s.
 
