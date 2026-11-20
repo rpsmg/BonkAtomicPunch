@@ -14,7 +14,7 @@ namespace BonkAtomicPunch;
 public class Plugin : BaseUnityPlugin
 {
     public const string Guid = "boofi.cu.bonkatomicpunch";
-    public const string Version = "0.4.7";
+    public const string Version = "1.0.0";
     public const string CanId = "bonkcan";
     public const string LiquidId = "bonk";
 
