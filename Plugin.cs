@@ -170,8 +170,7 @@ internal static class BonkedPatches
     }
 }
 
-// One extra jump in mid-air while bonked. Skipped when the feet item already grants an air jump, so two sources
-// of air movement never stack into two extra jumps.
+// One extra jump in mid-air while bonked.
 [HarmonyPatch(typeof(Body))]
 internal static class BonkedAirJump
 {
@@ -193,7 +192,6 @@ internal static class BonkedAirJump
     {
         var cam = PlayerCamera.main;
         if (!cam || cam.body != __instance || !Bonked.IsBonked(__instance)) return;
-        if (__instance.GetWearableBySlotID("feet")?.id == "scoutshoes") return;
         // Vanilla ground/wall jump succeeded (it clears the input), or nothing pressed this frame.
         if (!cam.wantsJumpInput || !Input.GetKeyDown(KeyBinds.GetBind("jump"))) return;
         if (airJumpUsed || !__instance.standing || __instance.forceWalk || !MovingAllowed(__instance)
