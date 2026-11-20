@@ -13,7 +13,7 @@ Then — *when the ride ends* — you get a gentle 50% slowdown, because every l
 - **ENERGY!** Eight whole minutes of it. That's a lot of minutes!
 - **RADIATION!** A whole 3.6 gy of it, the atomic way!
 - **HAPPINESS!** You'll be *delighted*! Right up until you remember where you are!
-- **AND A FREE MID-AIR JUMP!** Because sometimes the floor is lava and the air is better!
+- **AND A FREE DOUBLE JUMP!** Because sometimes the floor is lava and the second jump is better!
 
 Found in food crates and at all fine traders of questionable morals. Supplies are **rare** — so hoard them, chug them, and remember the golden rule:
 

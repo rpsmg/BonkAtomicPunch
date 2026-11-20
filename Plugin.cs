@@ -38,7 +38,7 @@ public class Plugin : BaseUnityPlugin
         LiquidRegistry.Register(LiquidId, new CustomLiquidInfo
         {
             name = "Bonk!",
-            description = "Cherry-flavoured and faintly glowing. Makes you untouchable and lets you jump once more in mid-air for a few seconds.",
+            description = "Cherry-flavoured and faintly glowing. Makes you untouchable and lets you double jump for a few seconds.",
             color = new Color32(200, 24, 48, 255), // cherry
             valuePerLiter = 48f, // 12 per 250 ml can
             injectionSickness = 0.6f,
@@ -136,7 +136,7 @@ public class Bonked : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (PlayerCamera.main && PlayerCamera.main.body == body)
             MoodleRegistry.AddMoodle(5, Plugin.MoodleIcon, "Bonked!",
-                $"Nothing can hurt you and you can jump once more in mid-air, but you can't attack. {Mathf.Max(timeLeft, 0f):0.0}s left.",
+                $"Nothing can hurt you and you can double jump, but you can't attack. {Mathf.Max(timeLeft, 0f):0.0}s left.",
                 chippedOnly: true, key: "bonkatomicpunch.bonked");
         if (timeLeft > 0f) return;
         body.temporarySlowdown = Mathf.Max(body.temporarySlowdown, 0.5f); // game fades it out over 5 s
@@ -170,7 +170,7 @@ internal static class BonkedPatches
     }
 }
 
-// One extra jump in mid-air while bonked.
+// One double jump while bonked.
 [HarmonyPatch(typeof(Body))]
 internal static class BonkedAirJump
 {
