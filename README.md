@@ -1,38 +1,29 @@
-# BonkAtomicPunch
+# BONK! ATOMIC PUNCH
 
-## Description
-Adds **Bonk! Atomic Punch** (`bonkcan`), a cherry-red soda that makes you briefly untouchable — at a price. Chug a can before the leap, the gunfight or the fall you probably shouldn't survive.
+**Tired of dying? Of course you are!**
 
-## Installation instructions
-1. Install BepInEx 5.4.23.5 (or newer 5.x) into the game folder.
-2. Install Casualties Together (it provides CUCoreLib).
-3. Copy `BonkAtomicPunch.dll` to `BepInEx\plugins\BonkAtomicPunch\`.
-4. Launch the game. The item is in food crates and at traders.
+Your teammates are dead. Your limbs are... mostly attached. The room is full of things with too many teeth. What you need is a refreshing, radioactive pick-me-up that makes you *invincible for eight whole seconds.* What you need is **BONK! ATOMIC PUNCH.**
 
-## Main features
-- **Bonk! Atomic Punch** — a 250 ml can, one use chugs the whole can. Rare in food crates and at all traders.
-- **Bonk!** — the liquid: energized +8:00, hydration +5, radiation +12 (3.6 gy), adrenaline +40, happiness +6 per can. Everything scales with the amount drunk, so Bonk! poured into another container still works.
-- **Bonked!** for 8 s (chipped-only moodle): injuries are frozen — no wounds, bleeding, pain, broken or dislocated limbs, blood loss or death, while healing still works. You can't attack or throw, but you get one extra mid-air jump.
-- Drinking another can while bonked resets the timer. When it ends, a 50% slowdown fades over 5 s.
+**BONK!** is the cherry-flavoured, atomic-age beverage that puts the *sugar* in *sugar rush* and the *freedom* in *freedom from consequences*. One can chugs itself in a single proud gulp. That's right — no silly sipping. You're busy. Something is chasing you.
 
-## Requirements
-- BepInEx 5.4.23.5 or newer.
-- Casualties Together (includes CUCoreLib).
-- Multiplayer: the item and liquid need the mod on the host and every client; hosts can enable "enforce mod list". The Bonked effect runs on the drinker's machine. The air jump works without any other mod.
+**Eight seconds.** Count 'em. During **BONKED!**, bullets bounce, claws slide, falls forgive, and blood stays exactly where you left it. Broken bones? **Not today.** Dismemberment? **Not on our watch.** Healing? Still works, because **BONK!** is nothing if not a considerate beverage.
 
-## Shout outs
-- Orsoniks for Casualties: Unknown.
-- creaturefeaturelarry for Casualties Together and CUCoreLib.
-- Valve for Team Fortress 2, where Bonk! Atomic Punch comes from.
-- The BepInEx and HarmonyX maintainers.
+Then — *when the ride ends* — you get a gentle 50% slowdown, because every legendary escape deserves a dramatic walk-off. Style!
 
-## Notes
-- **Plugin ID:** `sootiee.cu.bonkatomicpunch`
-- Sprites: `bonkcan.png` (4x9, vanilla soda can size) and `bonked.png` (20x20 moodle icon), painted from the `.art` files. Why injuries are frozen rather than attacks blocked: [docs/0001-bonked-freezes-injuries.md](docs/0001-bonked-freezes-injuries.md).
+**AND THAT'S NOT ALL!** Every can of **BONK!** is packed with:
 
-## Building from source
-Requires the .NET SDK and the game's managed DLLs, referenced straight from the install (no copies):
-```
-dotnet build -p:GameDir="C:\Program Files (x86)\Steam\steamapps\common\Casualties Unknown\"
-```
-The build copies the DLL to `BepInEx\plugins\BonkAtomicPunch\`; pass `-p:Deploy=false` to compile only.
+- **ENERGY!** Eight whole minutes of it. That's a lot of minutes!
+- **ADRENALINE!** For when the energy isn't enough!
+- **RADIATION!** A wholesome 3.6 gy of it, the atomic way!
+- **HAPPINESS!** You'll be *delighted*! Right up until you remember where you are!
+- **AND A FREE MID-AIR JUMP!** Because sometimes the floor is lava and the air is better!
+
+Found in food crates and at all fine traders of questionable morals. Supplies are **rare** — so hoard them, chug them, and remember the golden rule:
+
+**When in doubt, BONK out.**
+
+---
+
+*Now in a convenient 250 ml can. Poured into another container? Still works. Science!*
+
+<sub>Requires BepInEx 5.4.23.5 and Casualties Together (CUCoreLib). Install: `BonkAtomicPunch.dll` → `BepInEx\plugins\BonkAtomicPunch\`. Multiplayer: host and every client need the mod. Batteries not included. Do not drink real Bonk! Atomic Punch. Do not drink real radiation.</sub>
